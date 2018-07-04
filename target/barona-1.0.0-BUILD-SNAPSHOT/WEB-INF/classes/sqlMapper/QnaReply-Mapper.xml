@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="replyReply-Mapper">
+	<resultMap type="qnaReply" id="qnaReplyMap">
+		<id property="replyNo" column="reply_no"/>
+		<result property="replyContent" column="reply_content" />
+		<result property="replyWriter" column="reply_writer" />
+		<result property="replyRegdate" column="reply_regdate" />
+		<result property="qnaNo" column="qna_no" />
+	</resultMap>
+	
+	<select id="selectReplyByNo" resultMap="qnaReplyMap" parameterType="int">
+		SELECT
+			*
+		FROM
+			QNA_REPLY
+		WHERE
+			REPLY_NO = #{replyNo}
+	</select>
+	
+	<insert id="insertReply" parameterType="qnaReply">
+		INSERT INTO QNA_REPLY (
+			REPLY_CONTENT,
+			REPLY_WRITER,
+			QNA_NO)
+		VALUES (
+			#{replyContent},
+			#{replyWriter},
+			#{qnaNo})
+	</insert>
+	
+</mapper>

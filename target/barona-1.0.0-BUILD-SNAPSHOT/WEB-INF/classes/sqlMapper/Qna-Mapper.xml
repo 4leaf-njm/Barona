@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="Qna-Mapper">
+	<resultMap type="qna" id="qnaMap">
+		<id property="qnaNo" column="qna_no"/>
+		<result property="qnaTitle" column="qna_title" />
+		<result property="qnaContent" column="qna_content" />
+		<result property="qnaWriter" column="qna_writer" />
+		<result property="qnaRegdate" column="qna_regdate" />
+		<result property="qnaPhone" column="qna_phone" />
+		<result property="qnaPwd" column="qna_pwd" />
+		<result property="reply_yn" column="reply_yn" />
+	</resultMap>
+	
+	<select id="selectQnaList" resultMap="qnaMap">
+		SELECT
+			*
+		FROM
+			QNA
+		ORDER BY
+			QNA_NO DESC
+	</select>
+	
+	<select id="selectQnaByNo" resultMap="qnaMap" parameterType="int">
+		SELECT
+			*
+		FROM
+			QNA
+		WHERE
+			QNA_NO = #{qnaNo}
+	</select>
+	
+	<insert id="insertQna" parameterType="qna">
+		INSERT INTO QNA (
+			QNA_TITLE,
+			QNA_CONTENT,
+			QNA_WRITER,
+			QNA_PHONE,
+			QNA_PWD)
+		VALUES (
+			#{qnaTitle},
+			#{qnaContent},
+			#{qnaWriter},
+			#{qnaPhone},
+			#{qnaPwd})
+	</insert>
+	
+	<update id="updateQna" parameterType="qna">
+		UPDATE 
+			QNA 
+		SET
+			 QNA_TITLE = #{qnaTitle}
+			,QNA_CONTENT = #{qnaContent}
+			,QNA_WRITER = #{qnaWriter}
+			,QNA_PHONE = #{qnaPhone}
+			,QNA_PWD = #{qnaPwd}
+		WHERE
+			QNA_NO = #{qnaNo}
+	</update>
+	
+	<delete id="deleteQna" parameterType="int">
+		DELETE FROM
+			QNA
+		WHERE
+			QNA_NO = #{qnaNo}
+	</delete>
+	
+	<update id="updateQnaReply" parameterType="int">
+		UPDATE
+			QNA
+		SET
+			REPLY_YN = 'Y'
+		WHERE 
+			QNA_NO = #{qnaNo}
+	</update>
+</mapper>
