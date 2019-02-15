@@ -1,6 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
+<link href="${pageContext.request.contextPath }/resources/css/popup.css?ver=${ver}" rel="stylesheet"> 
 
+<script>
+$(document).ready(function(){
+	var windowWidth = $( window ).width();
+
+	if(windowWidth <= 320) {
+		$('#popup_layer').css('margin-left', '-145px');
+	} else if (windowWidth <= 375) {
+		$('#popup_layer').css('margin-left', '-170px');
+	} else if (windowWidth <= 426) {
+		$('#popup_layer').css('margin-left', '-194px');
+	} else if (windowWidth <= 768) {
+		$('#popup_layer').css('margin-left', '-345px');
+	} else if (windowWidth > 768){
+		$('#popup_layer').css('margin-left', '-465px');
+	}
+
+});
+</script>
 <div id="container">
 	<div class="pain">
 		<h2><img src="${pageContext.request.contextPath }/resources/images/main/pain_txt.gif" /></h2>
@@ -77,3 +97,32 @@
 		</div>	
 	</div>
 </div>
+
+<div id="overlay_t"></div> 
+<div id="popup_layer">
+	<img src="${pageContext.request.contextPath }/resources/images/popups/m_popup_01.jpg" style="width: 100%;">
+	<div class="btn_group">
+		<a href="#" class="btnDay">오늘 하루 열지 않기</a>
+		<a href="#" class="btnClose">닫기</a>
+	</div>
+</div>
+<script>
+	var cookieCheck01 = getCookie('mpopup01YN');
+	
+	if(cookieCheck01 != 'N')
+		$('#popup_layer, #overlay_t').show(); 
+	$('#popup_layer').css("top", Math.max(0, $(window).scrollTop() + 200) + "px"); 
+	$('.btnDay').click(function() {
+		setCookie( "mpopup01YN", "N" , 1);
+		$('#overlay_t, #popup_layer').hide();
+	});
+	$('.btnClose').click(function() {
+		$('#overlay_t, #popup_layer').hide();
+	});
+</script>
+<style>
+	.btn_group {background: #333;}
+	.btn_group a {float: left; width: 50%; padding: 10px 0; font-size: 13px; font-weight: bold; text-decoration: none; text-align: center;}
+	.btn_group .btnDay {background: #333; color: #f2f2f2;}
+	.btn_group .btnClose {background: #f2f2f2; color: #333;}
+</style>

@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script>
+	var mobileInfo = new Array('Android', 'iPhone', 'iPod', 'BlackBerry', 'Windows CE', 'SAMSUNG', 'LG', 'MOT', 'SonyEricsson');
+	var result = false;
+	for (var info in mobileInfo){	
+		if (navigator.userAgent.match(mobileInfo[info]) != null){
+			result = true;
+			break;
+		}
+	}
+	/* 메인 페이지로 이동 */
+	if(result) {
+    	location.href="${pageContext.request.contextPath }/m/main.do";
+	} else {
+		setTimeout(function(){
+			location.href="${pageContext.request.contextPath }/main.do";
+		}, 3500);
+	}
+</script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,29 +32,6 @@
 <link href="${pageContext.request.contextPath }/resources/css/loading.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>바로나통증의학과 방문을 환영합니다.</title>
-<script>
-   setTimeout(function(){
-      go_main();
-   }, 3500);
-</script>
-
-<script>
-/* 메인 페이지로 이동 */
-function go_main() {
-	var mobileInfo = new Array('Android', 'iPhone', 'iPod', 'BlackBerry', 'Windows CE', 'SAMSUNG', 'LG', 'MOT', 'SonyEricsson');
-	var result = false;
-	for (var info in mobileInfo){		if (navigator.userAgent.match(mobileInfo[info]) != null){
-			result = true;
-			break;
-		}
-	}
-	if(result) {
-    	location.href="${pageContext.request.contextPath }/m/main.do";
-	} else {
-		location.href="${pageContext.request.contextPath }/main.do";
-	}
-}
-</script>
 </head>
 <body>
 	<!-- 로딩 화면 -->

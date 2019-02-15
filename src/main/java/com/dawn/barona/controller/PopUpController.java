@@ -4,13 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("popUp")
+@RequestMapping("popup")
 public class PopUpController {
 
-	@RequestMapping("/pop_up.do")
-	public String goPopUp(){
+	@RequestMapping("/popup_01.do")
+	public String goPopup01(){
 		
-		return "popUp/pop_up";
+		return "popup/popup_01";
 	}
-	
+
+	@RequestMapping("/popup_02.do")
+	public String goPopup02(){
+		
+		return "popup/popup_02";
+	}
 }

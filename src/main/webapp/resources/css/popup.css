@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+body {margin: 0;}
+
+.btn_box {overflow: hidden; background: #f2f2f2;}
+.btn_box a {position: relative; display: inline-block; margin: 11px 15px; font-size: 14px; font-weight: 550; color: #333; text-decoration: none;}
+.btn_box a:hover {text-decoration: underline;}
+.btn_box .btnDay {position: relative; float: left; padding-left: 25px;}
+.btn_box .btnDay .far {position: absolute; left: 0; font-size: 20px;}
+.btn_box .btnClose {float: right;}
+
+#overlay_t { background-color: #000; bottom: 0; left: 0; opacity: 0.5; filter: alpha(opacity = 50); 
+            /* IE7 & 8 */ position: fixed; right: 0; top: 0; z-index: 99; display:none;}
+
+#popup_layer { width: 90%; margin-bottom:30px; background:#fff; border:solid 1px #ccc; position:absolute; 
+               top:260px; left:50%; box-shadow: 0px 1px 20px #333; z-index:100; display:none;}

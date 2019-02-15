@@ -8,4 +8,5 @@ public class FaqVO {
 	private String faqType;
 	private String faqQuestion;
 	private String faqAnswer;
+	
 }
