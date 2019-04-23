@@ -6,11 +6,14 @@
 	function openPopup() {
 		var cookieCheck01 = getCookie('popup01YN');
 		var cookieCheck02 = getCookie('popup02YN');
+		var cookieCheck03 = getCookie('popup03YN');
 		
 		if(cookieCheck02 != 'N')
-			 window.open("${pageContext.request.contextPath}/popup/popup_02.do", "b", "width=454, height=542, left=290, top=272, scrollbars=no, resizable=no, toolbars=no, menubar=no");
+			 window.open("${pageContext.request.contextPath}/popup/popup_02.do", "b", "width=454, height=542, left=360, top=272, scrollbars=no, resizable=no, toolbars=no, menubar=no");
 		if(cookieCheck01 != 'N')
-			 window.open("${pageContext.request.contextPath}/popup/popup_01.do", "a", "width=454, height=542, left=155, top=228, scrollbars=no, resizable=no, toolbars=no, menubar=no");
+			 window.open("${pageContext.request.contextPath}/popup/popup_01.do", "a", "width=454, height=542, left=225, top=232, scrollbars=no, resizable=no, toolbars=no, menubar=no");
+		if(cookieCheck03 != 'N')
+			 window.open("${pageContext.request.contextPath}/popup/popup_03.do", "c", "width=454, height=542, left=100, top=192, scrollbars=no, resizable=no, toolbars=no, menubar=no");
 	}
 	
 	$(window).on('load', function() {

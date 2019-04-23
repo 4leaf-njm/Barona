@@ -100,7 +100,13 @@ $(document).ready(function(){
 
 <div id="overlay_t"></div> 
 <div id="popup_layer">
-	<img src="${pageContext.request.contextPath }/resources/images/popups/m_popup_01.jpg" style="width: 100%;">
+	<img src="${pageContext.request.contextPath }/resources/images/popups/m_popup_02.jpg" style="width: 100%; display: block;" class="popup_image popup01">
+	<img src="${pageContext.request.contextPath }/resources/images/popups/m_popup_01.jpg" style="width: 100%;" class="popup_image popup02">
+	<div class="btn_slides">
+		<a href="#" class="btnPrev"><i class="fas fa-chevron-circle-left"></i></a>
+		<p class="popup_number"></p>
+		<a href="#" class="btnNext"><i class="fas fa-chevron-circle-right"></i></a>
+	</div>
 	<div class="btn_group">
 		<a href="#" class="btnDay">오늘 하루 열지 않기</a>
 		<a href="#" class="btnClose">닫기</a>
@@ -108,10 +114,33 @@ $(document).ready(function(){
 </div>
 <script>
 	var cookieCheck01 = getCookie('mpopup01YN');
+	var popups = $('.popup_image');
+	var current_popup = 1;
+	
+	$('.btn_slides .popup_number').text(popup_numbering(current_popup, popups.length));
 	
 	if(cookieCheck01 != 'N')
 		$('#popup_layer, #overlay_t').show(); 
+
 	$('#popup_layer').css("top", Math.max(0, $(window).scrollTop() + 200) + "px"); 
+	
+	$('.btnPrev').click(function(){
+		if(current_popup == 1) 
+			return;
+		current_popup -= 1;
+		$('.btn_slides .popup_number').text(popup_numbering(current_popup, popups.length));
+		$('.popup_image').hide();
+		$('.popup0' + current_popup).show();
+	});
+	$('.btnNext').click(function(){
+		if(current_popup == popups.length) 
+			return;
+		current_popup += 1;
+		$('.btn_slides .popup_number').text(popup_numbering(current_popup, popups.length));
+		$('.popup_image').hide();
+		$('.popup0' + current_popup).show();
+	});
+	
 	$('.btnDay').click(function() {
 		setCookie( "mpopup01YN", "N" , 1);
 		$('#overlay_t, #popup_layer').hide();
@@ -119,6 +148,15 @@ $(document).ready(function(){
 	$('.btnClose').click(function() {
 		$('#overlay_t, #popup_layer').hide();
 	});
+	
+	function popup_numbering(current, length) {
+		if(current < 10)
+			current = '0' + current;
+		if(length < 10) 
+			length = '0' + length;
+		return current + ' / ' + length;
+	}
+	
 </script>
 <style>
 	.btn_group {background: #333;}
